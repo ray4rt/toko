@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Checkout — TokoKu{% endblock %}
+
+{% block content %}
+  <h1>Checkout</h1>
+
+  <div class="checkout-layout">
+    <div class="checkout-summary">
+      <h2>Ringkasan Pesanan</h2>
+      <ul class="summary-list">
+        {% for item in items %}
+          <li>{{ item.emoji }} {{ item.name }} &times; {{ item.qty }} — {{ item.subtotal | rupiah }}</li>
+        {% endfor %}
+      </ul>
+      <p class="total">Total: <strong>{{ total | rupiah }}</strong></p>
+    </div>
+
+    <form action="{{ url_for('checkout') }}" method="post" class="checkout-form">
+      <h2>Data Pengiriman</h2>
+      <label for="name">Nama Lengkap</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="address">Alamat Lengkap</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <button type="submit">Buat Pesanan</button>
+    </form>
+  </div>
+{% endblock %}

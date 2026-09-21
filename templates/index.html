@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}TokoKu — Semua Produk{% endblock %}
+
+{% block content %}
+  <h1>Semua Produk</h1>
+  <div class="product-grid">
+    {% for product in products %}
+      <div class="product-card">
+        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="product-image-link">
+          <div class="product-image">{{ product.emoji }}</div>
+        </a>
+        <h3>
+          <a href="{{ url_for('product_detail', product_id=product.id) }}">{{ product.name }}</a>
+        </h3>
+        <p class="price">{{ product.price | rupiah }}</p>
+        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="add-form">
+          <input type="hidden" name="qty" value="1">
+          <button type="submit">Tambah ke Keranjang</button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

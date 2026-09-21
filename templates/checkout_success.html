@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Pesanan Berhasil — TokoKu{% endblock %}
+
+{% block content %}
+  <div class="success-box">
+    <h1>✅ Pesanan Berhasil Dibuat!</h1>
+    <p>Terima kasih, <strong>{{ name }}</strong>.</p>
+    <p>Pesanan akan dikirim ke:</p>
+    <p class="address">{{ address }}</p>
+    <p class="total">Total pembayaran: <strong>{{ total | rupiah }}</strong></p>
+    <a href="{{ url_for('index') }}" class="back-link">&larr; Kembali belanja</a>
+  </div>
+{% endblock %}

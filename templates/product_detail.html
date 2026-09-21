@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} — TokoKu{% endblock %}
+
+{% block content %}
+  <a href="{{ url_for('index') }}" class="back-link">&larr; Kembali ke daftar produk</a>
+
+  <div class="product-detail">
+    <div class="product-image large">{{ product.emoji }}</div>
+    <div class="product-info">
+      <h1>{{ product.name }}</h1>
+      <p class="price large">{{ product.price | rupiah }}</p>
+      <p class="description">{{ product.description }}</p>
+
+      <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="add-form-detail">
+        <label for="qty">Jumlah</label>
+        <input type="number" id="qty" name="qty" value="1" min="1">
+        <button type="submit">Tambah ke Keranjang</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
